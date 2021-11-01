@@ -1,14 +1,11 @@
 import Player from '@vimeo/player';
 import throttle from 'lodash.throttle';
 
-const iframe = document.querySelector('iframe');
-const player = new Vimeo.Player(iframe);
+const iframeEL = document.querySelector('iframe');
+const player = new Vimeo.Player(iframeEL);
 const STORAGE_KEY = 'videoplayer-current-time';
 
-player.on('play', function () {
-  console.log('played the video!');
-  player.on('timeupdate', throttle(recordingPlayingTime, 1000));
-});
+player.on('timeupdate', throttle(recordingPlayingTime, 1000));
 
 function recordingPlayingTime(event) {
   console.log(event);
